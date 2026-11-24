@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>MKS Group — لوحة المتابعة</title>
+<link rel="icon" href="img/brand/icon-black.png">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Archivo:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F2EF;--dk:#231F20;--card:#fff;--line:#E4DFD8;--mut:#6B6460;--gold:#A8843F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--dk);font-family:'IBM Plex Sans Arabic',sans-serif}
+.lat{font-family:Archivo,sans-serif}
+button,input,select,textarea{font-family:inherit;font-size:15px}
+.app{display:flex;flex-wrap:wrap;min-height:100vh}
+aside{flex:1 1 230px;max-width:100%;background:var(--dk);color:#fff;padding:28px 18px;display:flex;flex-direction:column;gap:6px}
+aside img{width:150px;margin-bottom:22px}
+aside button{all:unset;cursor:pointer;color:#C9C3BA;padding:12px 14px;border-radius:6px;font-size:15px}
+aside button.on{background:#3A3536;color:#fff;font-weight:600}
+aside .me{margin-top:auto;font-size:13px;color:#9E979A;padding:12px 14px;word-break:break-all}
+main{flex:999 1 560px;min-width:0;padding:32px 36px 64px}
+h1{margin:0 0 6px;font-size:28px}h2{margin:0;font-size:19px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:24px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:22px}
+.seg{display:flex;gap:6px}.seg button{padding:9px 16px;border-radius:6px;border:1px solid #CFC8BF;background:#fff;cursor:pointer}
+.seg button.on{background:var(--dk);color:#fff;border-color:var(--dk);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:24px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px 20px}
+.kpi span{font-size:13px;color:var(--mut)}.kpi b{display:block;font-family:Archivo,sans-serif;font-size:32px;margin-top:6px}
+.box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:22px}
+.box .row{margin-bottom:14px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{font-weight:500;color:var(--mut);text-align:start;padding:10px 12px;font-size:13px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:12px;font-size:14px;border-bottom:1px solid #EFEBE5;white-space:nowrap;vertical-align:top}
+tr.click{cursor:pointer}tr.click:hover td{background:#FAF8F5}
+.b{display:inline-block;font-size:12px;font-weight:600;padding:4px 9px;border-radius:4px}
+.b.y{background:#E3EEE6;color:#1F5A33}.b.n{background:#EFEBE5;color:#5C5652}
+.btn{padding:10px 18px;border-radius:6px;border:1px solid var(--dk);background:var(--dk);color:#fff;cursor:pointer;font-weight:600}
+.btn.l{background:#fff;color:var(--dk);border-color:#CFC8BF;font-weight:500}
+.btn.s{padding:7px 12px;font-size:13px}
+input,select,textarea{padding:10px 12px;border:1px solid #CFC8BF;border-radius:6px;background:#fff}
+.form{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin-bottom:16px;padding:16px;background:#FAF8F5;border-radius:8px}
+.form label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mut)}
+.login{max-width:420px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:12px;padding:40px;text-align:center}
+.login img{width:180px;margin:0 auto 24px;display:block}
+.empty{color:var(--mut);font-size:14px;padding:16px 0}
+.warn{background:#FFF6E5;border:1px solid #F0D9A8;color:#7A5A12;border-radius:8px;padding:14px 16px;font-size:14px;margin-bottom:18px}
+.tl{font-size:13px;color:var(--mut)}
+.hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="login" class="login hide">
+  <img src="img/brand/logo-black.png" alt="MKS Group">
+  <h1 style="font-size:22px">لوحة المتابعة</h1>
+  <p class="sub">خاصة بصاحب الموقع فقط</p>
+  <button class="btn" id="signin" type="button" style="width:100%;padding:14px">تسجيل الدخول بحساب جوجل</button>
+  <p class="tl" id="loginMsg" style="margin-top:14px"></p>
+</div>
+
+<div id="noconfig" class="login hide">
+  <img src="img/brand/logo-black.png" alt="MKS Group">
+  <p>لسه Firebase مش متوصل — حط الكود في <span class="lat">js/firebase-config.js</span>.</p>
+</div>
+
+<div class="app hide" id="app">
+  <aside>
+    <img src="img/brand/logo-white.png" alt="MKS Group">
+    <button type="button" data-tab="overview" class="on">المتابعة والمشاهدات</button>
+    <button type="button" data-tab="clients">لينكات العملاء</button>
+    <button type="button" data-tab="messages">رسائل التواصل</button>
+    <a href="index.html" target="_blank" style="color:#C9C3BA;padding:12px 14px;font-size:15px;text-decoration:none">فتح الموقع ↗</a>
+    <div class="me"><span id="me"></span><br><button type="button" id="signout" style="all:unset;cursor:pointer;color:#C9A35B;margin-top:6px">تسجيل خروج</button></div>
+  </aside>
+  <main>
+    <div class="row" style="margin-bottom:8px">
+      <div><h1 id="pageTitle">المتابعة والمشاهدات</h1><div class="sub" style="margin:0">صفحة خاصة بيك — مش ظاهرة للعملاء</div></div>
+      <div class="seg" id="range"><button type="button" data-d="7">7 أيام</button><button type="button" data-d="30" class="on">30 يوم</button><button type="button" data-d="0">الكل</button></div>
+    </div>
+    <div style="height:18px"></div>
+
+    <section data-sec="overview">
+      <div class="kpis" id="kpis"></div>
+      <div class="box"><div class="row"><h2>أكثر المشاريع مشاهدة</h2></div><div class="tw" id="topProjects"></div></div>
+      <div class="box"><div class="row"><h2>آخر الزيارات</h2></div><div class="tw" id="recent"></div></div>
+    </section>
+
+    <section data-sec="clients" class="hide">
+      <div class="box">
+        <div class="row"><h2>لينكات العملاء</h2><button class="btn" type="button" id="newClientBtn">+ لينك جديد لعميل</button></div>
+        <form class="form hide" id="clientForm">
+          <label>كود العميل<input name="code" class="lat" required pattern="[A-Za-z0-9_-]{2,20}" style="width:130px"></label>
+          <label>اسم العميل<input name="name" required style="width:220px"></label>
+          <label>يفتح على<select name="target" id="targetSel"><option value="">الصفحة الرئيسية</option></select></label>
+          <label>ملاحظة<input name="note" style="width:220px"></label>
+          <button class="btn" type="submit">حفظ</button>
+          <button class="btn l" type="button" id="cancelClient">إلغاء</button>
+        </form>
+        <div class="tw" id="clientsTbl"></div>
+      </div>
+      <div class="box hide" id="clientDetail"></div>
+    </section>
+
+    <section data-sec="messages" class="hide">
+      <div class="box"><div class="row"><h2>رسائل التواصل</h2></div><div class="tw" id="msgsTbl"></div></div>
+    </section>
+  </main>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/firebase-config.js"></script>
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

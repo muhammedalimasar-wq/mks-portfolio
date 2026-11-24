@@ -1,0 +1,47 @@
+rules_version = '2';
+// MKS Group portfolio — Firestore security rules
+// Visitors can only ADD tracking events and contact messages. Only the admin can read anything.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'muhammed.ali.masar@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+    function str(v, n) { return v == null || (v is string && v.size() <= n); }
+
+    match /events/{id} {
+      allow read, delete: if isAdmin();
+      allow update: if false;
+      allow create: if request.resource.data.keys().hasOnly(
+                         ['type','page','project','client','vid','sid','lang','mobile','ref','ts','sheet','from','dur'])
+                    && request.resource.data.type in ['view','leave','sheet','viewer','wa','msg']
+                    && request.resource.data.ts == request.time
+                    && str(request.resource.data.page, 20)
+                    && str(request.resource.data.project, 40)
+                    && str(request.resource.data.client, 20)
+                    && request.resource.data.vid is string && request.resource.data.vid.size() <= 40
+                    && str(request.resource.data.sid, 20)
+                    && str(request.resource.data.ref, 80)
+                    && (!('sheet' in request.resource.data) || str(request.resource.data.sheet, 40))
+                    && (!('from' in request.resource.data) || str(request.resource.data.from, 40))
+                    && (!('dur' in request.resource.data) || (request.resource.data.dur is number && request.resource.data.dur <= 86400));
+    }
+
+    match /messages/{id} {
+      allow read, update, delete: if isAdmin();
+      allow create: if request.resource.data.keys().hasOnly(['name','mobile','svc','msg','client','lang','ts'])
+                    && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80
+                    && request.resource.data.mobile is string && request.resource.data.mobile.size() > 0 && request.resource.data.mobile.size() <= 30
+                    && str(request.resource.data.svc, 60)
+                    && str(request.resource.data.msg, 1500)
+                    && str(request.resource.data.client, 20)
+                    && request.resource.data.ts == request.time;
+    }
+
+    match /clients/{id} {
+      allow read, write: if isAdmin();
+    }
+  }
+}
