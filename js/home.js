@@ -110,6 +110,21 @@
     } else { msg.style.color = ''; msg.textContent = t('f_ok'); form.reset(); }
   });
 
+  // social links in the contact box (WhatsApp shows once a number is set)
+  const ic = {
+    fb: '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.7V14h2.7v8z"/></svg>',
+    ig: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+    wa: '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.5-.3z"/></svg>'
+  };
+  const soc = [
+    ['fb', s.facebook, 'Facebook'],
+    ['ig', s.instagram, 'Instagram'],
+    ['wa', s.whatsapp ? M.wa() : '', 'WhatsApp']
+  ].filter(x => x[1]);
+  document.getElementById('socials').innerHTML = soc.map(([k, u, n]) =>
+    `<a class="soc soc-${k}" href="${u}" target="_blank" rel="noopener" aria-label="${n}">${ic[k]}<span>${n}</span></a>`).join('');
+  const sw = document.querySelector('.soc-wa'); if (sw) sw.addEventListener('click', () => mksTrack('wa', { from: 'contact' }));
+
   // map
   document.getElementById('map').src = 'https://www.google.com/maps?q=' + encodeURIComponent(s.mapsEmbedQuery) + '&z=16&output=embed';
   document.getElementById('mapsLink').href = s.mapsLink;

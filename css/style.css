@@ -237,3 +237,9 @@ body{overflow-x:clip}
 .stats-in.n3{grid-template-columns:repeat(3,1fr)}
 @media(max-width:760px){.stats-in.n3{grid-template-columns:1fr}.stats-in.n3 .stat{border-inline-start:0;border-top:1px solid #3A3536}.stats-in.n3 .stat:first-child{border-top:0}}
 [hidden]{display:none!important}
+
+/* social buttons in contact box */
+.socials{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.soc{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:10px 18px;border:1px solid var(--line2);border-radius:999px;color:var(--tx);font-size:15px;font-weight:600;transition:border-color .3s,color .3s,background .3s}
+.soc:hover{border-color:var(--gold);color:var(--gold)}
+.soc-wa:hover{border-color:#25D366;color:#25D366}
