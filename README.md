@@ -11,3 +11,5 @@ Static site (GitHub Pages) + Firebase Firestore for view tracking, client links 
 - `img/p/` project images, `img/d/` watermarked drawing sheets, `img/brand/` logos
 
 Client tracking links: `index.html?c=CL-001` or `project.html?id=p2&c=CL-001` (created from the dashboard).
+
+After changing any text in `js/common.js`, run `node tools/prerender.js` so the English text is also written into the HTML (for Google and for visitors before JavaScript loads).

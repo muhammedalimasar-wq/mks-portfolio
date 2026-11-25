@@ -1,6 +1,7 @@
 /* =========================================================
    MKS Group — بيانات الموقع
-   كل المشاريع هنا تجريبية (TEST) وهتتبدل بالمشاريع الحقيقية.
+   projects: مشاريع بالصور (فاضية لحد ما المشاريع الحقيقية توصل)
+   references: المشاريع المرجعية (نصوص) من الموقع القديم
    cat: '3d' | 'dwg' | 'site'
    images: صور المشروع (أول صورة = صورة الكارت)
    sheets: اللوحات اللي بتظهر في عارض اللوحات (عليها علامة مائية)
@@ -8,107 +9,63 @@
 window.MKS = {
   site: {
     phone: '+202-2519-1521',
-    whatsapp: '200000000000',          // رقم الواتساب بالصيغة الدولية بدون + مثال: 2010XXXXXXXX
+    whatsapp: '',          // رقم الواتساب بالصيغة الدولية بدون + مثال: 2010XXXXXXXX — فاضي = أزرار الواتساب مخفية
     email: '',
     mapsLink: 'https://maps.app.goo.gl/zZzvpLouM8SrEyyU7',
     mapsEmbedQuery: '29.969979,31.272235',
     facebook: 'https://www.facebook.com/mksgroupco.egy/',
-    instagram: '',
+    instagram: 'https://www.instagram.com/mksgroupco.egy/',
     linkedin: '',
     heroImage: 'img/p/kh-05.jpg',
-    featured: 'p2',
-    stats: [ // null = يظهر "—" لحد ما الرقم الحقيقي يتحط
-      { value: null, ar: 'سنة خبرة', en: 'Years of experience' },
-      { value: null, ar: 'مشروع منفذ', en: 'Completed projects' },
-      { value: null, ar: 'فيلا وشقة', en: 'Villas & apartments' },
-      { value: null, ar: 'لوحة تنفيذية', en: 'Working drawings' }
+    featured: null,
+    stats: [
+      { value: 2,  ar: 'قسمان يعملان كفريق واحد', en: 'Divisions working as one' },
+      { value: 5,  ar: 'قطاعات نخدمها', en: 'Sectors we serve' },
+      { value: 12, ar: 'مشروعًا مرجعيًا', en: 'Reference projects' }
     ],
     serviceImages: { '3d': 'img/p/e13-03.jpg', dwg: 'img/d/mv-11.jpg', site: 'img/p/kh-36.jpg' }
   },
 
-  projects: [
-    {
-      id: 'p1', cat: '3d', test: true,
-      ar: { title: 'شقة سكنية مودرن (تجريبي)', type: 'شقة', place: 'القاهرة الجديدة', meta: 'شقة — تصميم داخلي 3D',
-            desc: 'تصميم داخلي كامل لشقة سكنية بألوان هادية من البيج والرمادي، مع إضاءة مخفية وخامات طبيعية في الريسبشن والمطبخ وغرف النوم.' },
-      en: { title: 'Modern Apartment (test)', type: 'Apartment', place: 'New Cairo', meta: 'Apartment — 3D interior design',
-            desc: 'Full interior design for a residential apartment in calm beige and grey tones, with hidden lighting and natural materials.' },
-      area: '—', year: '—', status: { ar: 'تصميم', en: 'Design' },
-      scope: ['3d'],
-      images: ['img/p/e13-02.jpg','img/p/e13-03.jpg','img/p/e13-05.jpg','img/p/e13-13.jpg','img/p/e13-16.jpg','img/p/e13-20.jpg','img/p/e13-28.jpg','img/p/e13-31.jpg','img/p/e13-35.jpg'],
-      sheets: []
-    },
-    {
-      id: 'p2', cat: '3d', test: true,
-      ar: { title: 'شقة P-3 (تجريبي)', type: 'شقة', place: 'القاهرة', meta: 'شقة — تصميم داخلي + لوحات',
-            desc: 'إعادة تصميم شقة P-3 بالكامل: تعديل حوائط، ريسبشن وسفرة مفتوحين، ومطبخ وغرف نوم بتفاصيل خشب وإضاءة دافية.' },
-      en: { title: 'Apartment P-3 (test)', type: 'Apartment', place: 'Cairo', meta: 'Apartment — interior + drawings',
-            desc: 'Complete redesign of apartment P-3: wall changes, open reception and dining, warm wood details and lighting.' },
-      area: '—', year: '—', status: { ar: 'تصميم', en: 'Design' },
-      scope: ['3d','dwg'],
-      images: ['img/p/mv-06.jpg','img/p/mv-02.jpg','img/p/mv-04.jpg','img/p/mv-09.jpg','img/p/mv-12.jpg','img/p/mv-16.jpg','img/p/mv-21.jpg','img/p/mv-26.jpg','img/p/mv-30.jpg'],
-      sheets: [
-        { code: 'A-101', ar: 'المسقط العام', en: 'General plan', img: 'img/d/mv-01.jpg' },
-        { code: 'A-102', ar: 'مسقط — غرفة المعيشة', en: 'Plan — living room', img: 'img/d/mv-11.jpg' },
-        { code: 'A-103', ar: 'مسقط — غرفة نوم 2', en: 'Plan — bedroom 2', img: 'img/d/mv-15.jpg' },
-        { code: 'A-104', ar: 'مسقط — غرفة النوم الرئيسية', en: 'Plan — master bedroom', img: 'img/d/mv-20.jpg' },
-        { code: 'A-105', ar: 'مسقط — الحمام', en: 'Plan — bathroom', img: 'img/d/mv-27.jpg' }
-      ]
-    },
-    {
-      id: 'p3', cat: '3d', test: true,
-      ar: { title: 'شقة V4 (تجريبي)', type: 'شقة', place: 'الجيزة', meta: 'شقة — تصميم داخلي 3D',
-            desc: 'شقة V4 بتصميم عصري: ريسبشن واسع، سفرة، مطبخ مفتوح، غرف نوم أطفال بألوان مبهجة، وبلكونة بجلسة خضرا.' },
-      en: { title: 'Apartment V4 (test)', type: 'Apartment', place: 'Giza', meta: 'Apartment — 3D interior design',
-            desc: 'Contemporary design for apartment V4: wide reception, dining, open kitchen, kids rooms and a green balcony lounge.' },
-      area: '—', year: '—', status: { ar: 'تصميم', en: 'Design' },
-      scope: ['3d','dwg'],
-      images: ['img/p/kh-05.jpg','img/p/kh-03.jpg','img/p/kh-04.jpg','img/p/kh-08.jpg','img/p/kh-09.jpg','img/p/kh-17.jpg','img/p/kh-25.jpg','img/p/kh-36.jpg','img/p/kh-37.jpg'],
-      sheets: [
-        { code: 'A-101', ar: 'المسقط العام', en: 'General plan', img: 'img/d/kh-01.jpg' },
-        { code: 'A-102', ar: 'مسقط — الحمام', en: 'Plan — bathroom', img: 'img/d/kh-14.jpg' },
-        { code: 'A-103', ar: 'مسقط — غرفة الأطفال', en: 'Plan — kids room', img: 'img/d/kh-16.jpg' },
-        { code: 'A-104', ar: 'مسقط — غرفة النوم', en: 'Plan — bedroom', img: 'img/d/kh-24.jpg' }
-      ]
-    },
-    {
-      id: 'p4', cat: 'dwg', test: true,
-      ar: { title: 'لوحات تنفيذية — شقة P-3 (تجريبي)', type: 'شقة', place: 'القاهرة', meta: 'لوحات تنفيذية — معماري',
-            desc: 'مجموعة لوحات تنفيذية للشقة: المسقط العام وتعديلات الحوائط ومساقط الفرش لكل فراغ.' },
-      en: { title: 'Working drawings — P-3 (test)', type: 'Apartment', place: 'Cairo', meta: 'Working drawings — architectural',
-            desc: 'Working drawing set: general plan, wall modifications and furniture plans for every space.' },
-      area: '—', year: '—', status: { ar: 'لوحات', en: 'Drawings' },
-      scope: ['dwg'],
-      images: ['img/d/mv-01.jpg','img/d/mv-11.jpg','img/d/mv-20.jpg'],
-      sheets: [
-        { code: 'A-101', ar: 'المسقط العام', en: 'General plan', img: 'img/d/mv-01.jpg' },
-        { code: 'A-102', ar: 'مسقط — غرفة المعيشة', en: 'Plan — living room', img: 'img/d/mv-11.jpg' },
-        { code: 'A-103', ar: 'مسقط — غرفة نوم 2', en: 'Plan — bedroom 2', img: 'img/d/mv-15.jpg' },
-        { code: 'A-104', ar: 'مسقط — غرفة النوم الرئيسية', en: 'Plan — master bedroom', img: 'img/d/mv-20.jpg' },
-        { code: 'A-105', ar: 'مسقط — الحمام', en: 'Plan — bathroom', img: 'img/d/mv-27.jpg' }
-      ]
-    },
-    {
-      id: 'p5', cat: 'site', test: true,
-      ar: { title: 'تشطيب شقة كاملة (تجريبي)', type: 'شقة', place: 'القاهرة الجديدة', meta: 'شقة — تنفيذ تشطيبات كاملة',
-            desc: 'تنفيذ أعمال التشطيب الكاملة: أرضيات، أسقف جبس بورد وإضاءة، دهانات، نجارة ومطبخ.' },
-      en: { title: 'Full apartment fit-out (test)', type: 'Apartment', place: 'New Cairo', meta: 'Apartment — full finishing',
-            desc: 'Full finishing works: flooring, gypsum ceilings and lighting, paints, joinery and kitchen.' },
-      area: '—', year: '—', status: { ar: 'منفذ', en: 'Completed' },
-      scope: ['site'],
-      images: ['img/p/e13-16.jpg','img/p/e13-18.jpg','img/p/e13-24.jpg','img/p/e13-13.jpg'],
-      sheets: []
-    },
-    {
-      id: 'p6', cat: 'site', test: true,
-      ar: { title: 'تنفيذ وإشراف شقة V4 (تجريبي)', type: 'شقة', place: 'الجيزة', meta: 'شقة — تنفيذ وإشراف',
-            desc: 'تنفيذ التصميم على الطبيعة مع إشراف هندسي كامل لحد التسليم.' },
-      en: { title: 'V4 execution & supervision (test)', type: 'Apartment', place: 'Giza', meta: 'Apartment — execution & supervision',
-            desc: 'On-site execution of the design with full engineering supervision until handover.' },
-      area: '—', year: '—', status: { ar: 'منفذ', en: 'Completed' },
-      scope: ['3d','site'],
-      images: ['img/p/kh-10.jpg','img/p/kh-11.jpg','img/p/kh-36.jpg','img/p/kh-37.jpg'],
-      sheets: []
-    }
+  // مشاريع بالصور — هتتضاف لما المشاريع الحقيقية توصل (نفس الشكل: id, cat '3d'|'dwg'|'site', en/ar, images, sheets...)
+  projects: [],
+
+  // cat: res سكني | com تجاري وإداري | pub تعليمي وصحي | ind صناعي وفندقي
+  references: [
+    { years: '2019–2021', cat: 'res',
+      en: { title: 'Residential tower complex', place: 'Hawalli, Kuwait', desc: 'Three 18-floor towers over a three-level basement, with structure and complete finishing. Climbing metal formwork for the cores, a 5-day average floor cycle, handover two months early.' },
+      ar: { title: 'مجمع أبراج سكنية', place: 'حولي، الكويت', desc: 'ثلاثة أبراج من 18 طابقًا فوق ثلاثة طوابق بدروم، شاملة الهيكل الإنشائي والتشطيب الكامل. شدات معدنية متسلقة للقلوب، بمتوسط 5 أيام للطابق، وتسليم قبل الموعد بشهرين.' } },
+    { years: '2016–2018', cat: 'res',
+      en: { title: 'Model villa compound', place: 'Sabah Al-Ahmad City, Kuwait', desc: '48 repetitive villas built with metal formwork, plus infrastructure. Each concrete structure finished in 21 days, with about 15% less material waste.' },
+      ar: { title: 'مجمع فلل نموذجية', place: 'مدينة صباح الأحمد، الكويت', desc: '48 فيلا متكررة نُفذت بالشدات المعدنية مع البنية التحتية. كل هيكل خرساني اكتمل في 21 يومًا، مع خفض الهالك في الخامات بنحو 15%.' } },
+    { years: '2020–2022', cat: 'com',
+      en: { title: 'Office building', place: 'Capital Governorate, Kuwait', desc: 'A 14-floor building: finishing, interior decoration and MEP systems, with full BIM coordination between disciplines.' },
+      ar: { title: 'مبنى إداري', place: 'محافظة العاصمة، الكويت', desc: 'مبنى من 14 طابقًا: تشطيبات وديكور داخلي وأنظمة كهروميكانيكية، مع تنسيق كامل بين التخصصات بتقنية BIM.' } },
+    { years: '2017–2019', cat: 'pub',
+      en: { title: 'Educational complex', place: 'Jahra, Kuwait', desc: 'Three school buildings, a sports hall and playgrounds. Delivered on schedule, before the academic year began.' },
+      ar: { title: 'مجمع تعليمي', place: 'الجهراء، الكويت', desc: 'ثلاثة مبانٍ مدرسية وصالة رياضية وملاعب، سُلّمت في موعدها قبل بداية العام الدراسي.' } },
+    { years: '2018–2019', cat: 'com',
+      en: { title: 'Retail and restaurants center', place: 'Salmiya, Kuwait', desc: 'Turnkey finishing and decor for 40 retail units and restaurants, opened in phases without interrupting operations.' },
+      ar: { title: 'مركز تجاري ومطاعم', place: 'السالمية، الكويت', desc: 'تشطيب وديكور تسليم مفتاح لـ 40 محلًا ومطعمًا، افتُتحت على مراحل دون توقف التشغيل.' } },
+    { years: '2021–2023', cat: 'pub',
+      en: { title: 'Specialized hospital fit-out', place: 'Hawalli, Kuwait', desc: 'Six floors including operating rooms and intensive care, with medical MEP and gases, built to infection-control requirements.' },
+      ar: { title: 'تجهيز مستشفى تخصصي', place: 'حولي، الكويت', desc: 'ستة طوابق تشمل غرف العمليات والعناية المركزة، مع أنظمة كهروميكانيكية وغازات طبية وفق متطلبات مكافحة العدوى.' } },
+    { years: '2015–2016', cat: 'ind',
+      en: { title: 'Factory and warehouses', place: 'Shuwaikh, Kuwait', desc: 'A steel-frame industrial building with high-flatness concrete floors and attached offices, completed in 11 months.' },
+      ar: { title: 'مصنع ومستودعات', place: 'الشويخ، الكويت', desc: 'مبنى صناعي بهيكل معدني وأرضيات خرسانية عالية الاستواء ومكاتب ملحقة، اكتمل في 11 شهرًا.' } },
+    { years: '2022–2023', cat: 'ind',
+      en: { title: 'Four-star hotel renovation', place: 'Fahaheel, Kuwait', desc: '120 rooms, lobbies and halls rehabilitated in phases while the hotel stayed open, with an interior design approved by the brand.' },
+      ar: { title: 'تجديد فندق أربع نجوم', place: 'الفحيحيل، الكويت', desc: 'إعادة تأهيل 120 غرفة واللوبيهات والقاعات على مراحل أثناء تشغيل الفندق، بتصميم داخلي معتمد من العلامة الفندقية.' } },
+    { years: '', cat: 'res', recent: true,
+      en: { title: 'Kaifan private luxury villa', place: 'Kaifan, Kuwait', desc: 'Internal electrical networks, load distribution, decorative ceilings and concealed cove and linear lighting. Handed over with a hotel-grade finish and no outstanding snags.' },
+      ar: { title: 'فيلا خاصة فاخرة في كيفان', place: 'كيفان، الكويت', desc: 'شبكات كهرباء داخلية وتوزيع أحمال وأسقف ديكورية وإضاءة مخفية وخطية. سُلّمت بتشطيب فندقي دون أي ملاحظات معلقة.' } },
+    { years: '', cat: 'res', recent: true,
+      en: { title: 'Al-Shamiya private estate', place: 'Al-Shamiya, Kuwait', desc: 'Insulated underground cabling and a full garden, landscape and boundary-wall lighting system that turned the grounds into an illuminated facade.' },
+      ar: { title: 'قصر خاص في الشامية', place: 'الشامية، الكويت', desc: 'كابلات أرضية معزولة ونظام إضاءة متكامل للحديقة واللاندسكيب والأسوار، حوّل الموقع إلى واجهة مضيئة.' } },
+    { years: '', cat: 'com', recent: true,
+      en: { title: 'Concrete and formwork packages', place: 'Kuwait', desc: 'Reinforced concrete, metal formwork and casting of slabs and columns for multi-story buildings, held to accurate levels and squareness.' },
+      ar: { title: 'أعمال الخرسانة والشدات', place: 'الكويت', desc: 'خرسانة مسلحة وشدات معدنية وصب بلاطات وأعمدة لمبانٍ متعددة الطوابق، بمناسيب واستقامة دقيقة.' } },
+    { years: '', cat: 'com', recent: true,
+      en: { title: 'Turnkey fit-out and smart systems', place: 'Kuwait', desc: 'Complex partitions and gypsum ceilings, HVAC and electrical installations, and smart switching and interface systems.' },
+      ar: { title: 'تشطيبات تسليم مفتاح وأنظمة ذكية', place: 'الكويت', desc: 'قواطع معقدة وأسقف جبسية، وتركيبات تكييف وكهرباء، وأنظمة تحكم ذكية.' } }
   ]
 };

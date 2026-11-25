@@ -222,3 +222,18 @@ body{overflow-x:clip}
 .filters button,.btn,.lang,.burger{border-radius:8px}
 .form input,.form select,.form textarea{border-radius:8px}
 .stats{overflow:visible}
+
+/* reference projects (text cards) */
+.work-sub{margin:12px 0 0;max-width:620px;font-size:16px;line-height:1.8;color:var(--mut)}
+.rcard{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px 26px 26px;transition:transform .45s var(--ease),border-color .45s}
+.rcard::before{content:"";position:absolute;top:0;inset-inline-start:26px;width:44px;height:3px;background:var(--gold);border-radius:0 0 3px 3px}
+.rcard:hover{transform:translateY(-6px);border-color:var(--gold)}
+.rcard .yr{align-self:flex-start;font-family:var(--lat);font-size:13px;letter-spacing:.12em;color:var(--gold)}
+.rcard .t{font-size:21px;font-weight:700;line-height:1.35}
+.rcard .pl{font-size:14px;color:var(--mut2);display:flex;align-items:center;gap:6px}
+.rcard .d{margin:4px 0 0;font-size:15px;line-height:1.8;color:var(--mut)}
+.rcard .tag{align-self:flex-start;font-size:12px;font-weight:700;color:var(--bg);background:var(--gold);padding:4px 10px;border-radius:6px}
+.refs-note{margin:28px 0 0;text-align:center;font-size:14px;color:var(--mut2)}
+.stats-in.n3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:760px){.stats-in.n3{grid-template-columns:1fr}.stats-in.n3 .stat{border-inline-start:0;border-top:1px solid #3A3536}.stats-in.n3 .stat:first-child{border-top:0}}
+[hidden]{display:none!important}

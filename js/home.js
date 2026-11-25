@@ -9,16 +9,17 @@
   // hero
   document.getElementById('heroImg').src = s.heroImage;
   const heroWa = document.getElementById('heroWa');
-  heroWa.href = M.wa(); if (s.whatsapp) { heroWa.target = '_blank'; heroWa.rel = 'noopener'; }
+  heroWa.href = M.wa(); if (s.whatsapp) { heroWa.target = '_blank'; heroWa.rel = 'noopener'; } else heroWa.hidden = true;
   heroWa.addEventListener('click', () => mksTrack('wa', { from: 'hero' }));
 
   // stats (count up when a real value exists)
   const st = document.getElementById('stats');
+  st.classList.toggle('n3', s.stats.length === 3);
   st.innerHTML = s.stats.map(x => `<div class="stat"><b data-to="${x.value ?? ''}">${x.value == null ? '—' : '0'}</b><span>${L(x)}</span></div>`).join('');
   const count = el => {
     const to = +el.dataset.to; if (!to) return;
     const t0 = performance.now(), d = 1800;
-    const f = now => { const p = Math.min(1, (now - t0) / d); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))) + (p === 1 ? '+' : ''); if (p < 1) requestAnimationFrame(f); };
+    const f = now => { const p = Math.min(1, (now - t0) / d); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); };
     requestAnimationFrame(f);
   };
   if ('IntersectionObserver' in window) {
@@ -34,9 +35,11 @@
       <div class="bd"><div class="num">0${i + 1}</div><h3>${t(k + '_t')}</h3><p>${t(k + '_p')}</p>
       <button class="link" type="button" data-cat="${c}">${t('show_projects')}</button></div>
     </div>`).join('');
-  document.querySelectorAll('.svc .link').forEach(b => b.onclick = () => { setCat(b.dataset.cat); document.getElementById('work').scrollIntoView({ behavior: 'smooth' }); });
+  document.querySelectorAll('.svc .link').forEach(b => b.onclick = () => { if (M.projects.length) setCat(b.dataset.cat); document.getElementById('work').scrollIntoView({ behavior: 'smooth' }); });
 
-  // featured
+  // featured (hidden until there are real projects with photos)
+  if (!M.projects.length) document.getElementById('featSec').hidden = true;
+  else {
   const fp = M.projects.find(p => p.id === s.featured) || M.projects[0];
   document.getElementById('feat').innerHTML = `
     <div class="im"><img class="para" src="${fp.images[0]}" alt="${L(fp).title}" loading="lazy"></div>
@@ -53,15 +56,34 @@
       <a class="btn btn-gold" href="${projUrl(fp.id)}" style="align-self:flex-start">${t('see_project')}</a>
     </div>`;
 
+  }
+
   // portfolio + filters
   let cat = 'all';
-  const cats = ['all', '3d', 'dwg', 'site'];
+  const useRefs = !M.projects.length;
+  const cats = useRefs ? ['all', 'res', 'com', 'pub', 'ind'] : ['all', '3d', 'dwg', 'site'];
+  if (useRefs) {
+    document.getElementById('workH').dataset.i = 'refs_h';
+    document.getElementById('workP').dataset.i = 'refs_p';
+    document.getElementById('refsNote').dataset.i = 'refs_note';
+  }
+  const pin = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
   const fEl = document.getElementById('filters'), grid = document.getElementById('pgrid');
   fEl.innerHTML = cats.map(c => `<button type="button" data-c="${c}">${t('f_' + c)}</button>`).join('');
   fEl.querySelectorAll('button').forEach(b => b.onclick = () => setCat(b.dataset.c));
   function setCat(c) {
     cat = c;
     fEl.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.c === c));
+    if (useRefs) {
+      grid.innerHTML = M.references.filter(r => c === 'all' || r.cat === c).map((r, i) => `
+      <article class="rcard pop" style="animation-delay:${i * .06}s">
+        ${r.recent ? `<span class="tag">${t('recent')}</span>` : `<span class="yr" dir="ltr">${r.years}</span>`}
+        <h3 class="t">${L(r).title}</h3>
+        <div class="pl">${pin}${L(r).place}</div>
+        <p class="d">${L(r).desc}</p>
+      </article>`).join('');
+      return;
+    }
     const list = M.projects.filter(p => c === 'all' || p.cat === c);
     grid.innerHTML = list.map((p, i) => `
       <a class="pcard pop" href="${projUrl(p.id)}" style="animation-delay:${i * .08}s">
