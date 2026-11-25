@@ -5,16 +5,16 @@
       nav_home: 'الرئيسية', nav_services: 'خدماتنا', nav_work: 'أعمالنا', nav_process: 'طريقة شغلنا', nav_contact: 'تواصل معنا',
       cta_consult: 'اطلب استشارة', lang_btn: 'EN',
       hero_tag: 'ENGINEERING CONSULTANCY & CONTRACTING',
-      hero_h1: 'نصمم… ونرسم… <em>ونبني</em>',
-      hero_p: 'مجموعة MKS للاستشارات الهندسية والمقاولات العامة — من أول رندر 3D، للوحات التنفيذية، لحد تسليم المفتاح.',
+      hero_h1: 'كل مراحل مشروعك… <em>برؤية واحدة.</em>',
+      hero_p: 'مجموعة MKS للاستشارات الهندسية والمقاولات العامة: تصميم معماري وداخلي، حلول هندسية، تنفيذ وإشراف في الموقع، وإدارة مشروعك من أول فكرة لحد تسليم المفتاح.',
       see_work: 'شاهد أعمالنا', wa_us: 'تواصل عبر واتساب',
       services: 'خدماتنا', show_projects: 'عرض المشاريع ←',
-      s1_t: 'تصميمات 3D داخلي وخارجي', s1_p: 'رندرات واقعية للمساحات الداخلية والواجهات تساعدك تشوف مشروعك قبل التنفيذ.',
-      s2_t: 'لوحات تنفيذية وشوب دروينج', s2_p: 'لوحات معمارية وإنشائية وميكانيكا دقيقة وجاهزة للتنفيذ في الموقع.',
-      s3_t: 'تنفيذ مواقع', s3_p: 'تنفيذ وتشطيب الشقق والفلل والمشروعات التجارية بإشراف هندسي كامل.',
+      s1_t: 'التصميم المعماري والداخلي', s1_p: 'تصميمات 3D واقعية للمساحات الداخلية والواجهات، تساعدك تشوف مشروعك وتعدّل عليه قبل التنفيذ.',
+      s2_t: 'الحلول الهندسية', s2_p: 'لوحات تنفيذية وشوب دروينج معماري وإنشائي وميكانيكا، دقيقة وجاهزة للتنفيذ في الموقع.',
+      s3_t: 'التنفيذ والإنشاء', s3_p: 'تنفيذ وتشطيب الشقق والفلل والمشروعات التجارية بإشراف هندسي كامل.',
       featured: 'FEATURED PROJECT', k_type: 'النوع', k_place: 'المكان', k_area: 'المساحة', k_scope: 'النطاق', k_year: 'السنة', k_status: 'الحالة',
       see_project: 'شوف المشروع', see_project_arrow: 'شوف المشروع ←',
-      process: 'طريقة شغلنا',
+      process: 'نصمم… ونرسم… <em>ونبني</em>', slogan: 'كل مراحل مشروعك… برؤية واحدة.',
       p1_t: 'المعاينة والفكرة', p1_p: 'نسمع طلبك ونعاين الموقع ونحدد الميزانية ونطاق الشغل.',
       p2_t: 'التصميم 3D', p2_p: 'رندرات واقعية تشوف فيها مشروعك قبل ما يتنفذ وتعدل براحتك.',
       p3_t: 'اللوحات التنفيذية', p3_p: 'معماري وإنشائي وميكانيكا وشوب دروينج جاهزة للموقع.',
@@ -40,16 +40,16 @@
       nav_home: 'Home', nav_services: 'Services', nav_work: 'Our work', nav_process: 'Process', nav_contact: 'Contact',
       cta_consult: 'Get a consultation', lang_btn: 'عربي',
       hero_tag: 'ENGINEERING CONSULTANCY & CONTRACTING',
-      hero_h1: 'We design… we detail… <em>we build</em>',
-      hero_p: 'MKS Group Engineering Consultancy & General Contracting — from the first 3D render, through working drawings, to key handover.',
+      hero_h1: 'Every Stage of Your Project. <em>One Vision.</em>',
+      hero_p: 'MKS Group — Engineering Consultancy & General Contracting: architectural & interior design, engineering solutions, on-site execution and supervision, and management of your project from the first idea to key handover.',
       see_work: 'See our work', wa_us: 'WhatsApp us',
       services: 'Our services', show_projects: 'View projects →',
-      s1_t: 'Interior & exterior 3D design', s1_p: 'Realistic renders of interiors and facades so you can see your project before it is built.',
-      s2_t: 'Working & shop drawings', s2_p: 'Precise architectural, structural and MEP drawings, ready for site execution.',
-      s3_t: 'Site execution', s3_p: 'Fit-out and finishing of apartments, villas and commercial projects with full engineering supervision.',
+      s1_t: 'Architectural & Interior Design', s1_p: 'Realistic 3D designs of interiors and facades, so you can see and refine your project before it is built.',
+      s2_t: 'Engineering Solutions', s2_p: 'Precise architectural, structural and MEP working and shop drawings, ready for site execution.',
+      s3_t: 'Construction & Execution', s3_p: 'Fit-out and finishing of apartments, villas and commercial projects with full engineering supervision.',
       featured: 'FEATURED PROJECT', k_type: 'Type', k_place: 'Location', k_area: 'Area', k_scope: 'Scope', k_year: 'Year', k_status: 'Status',
       see_project: 'View project', see_project_arrow: 'View project →',
-      process: 'How we work',
+      process: 'We design… we detail… <em>we build</em>', slogan: 'Every Stage of Your Project. One Vision.',
       p1_t: 'Survey & concept', p1_p: 'We listen, survey the site and agree on budget and scope.',
       p2_t: '3D design', p2_p: 'Realistic renders so you see the result and adjust freely before execution.',
       p3_t: 'Working drawings', p3_p: 'Architectural, structural, MEP and shop drawings ready for site.',
@@ -179,7 +179,7 @@
     f.className = 'ftr';
     const links = [['fb', s.facebook], ['ig', s.instagram], ['li', s.linkedin]].filter(x => x[1])
       .map(([k, u]) => `<a href="${u}" target="_blank" rel="noopener" data-i="${k}"></a>`).join('');
-    f.innerHTML = `<div class="wrap"><img src="img/brand/icon-white.png" alt="MKS"><div data-i="rights"></div><div style="display:flex;gap:20px">${links}</div></div>`;
+    f.innerHTML = `<div class="wrap"><div class="ftr-brand"><img src="img/brand/icon-white.png" alt="MKS"><span data-i="slogan"></span></div><div data-i="rights"></div><div style="display:flex;gap:20px">${links}</div></div>`;
     if (s.whatsapp) {
       const a = document.createElement('a');
       a.className = 'wa-float'; a.href = MKS.wa(); a.target = '_blank'; a.rel = 'noopener'; a.setAttribute('aria-label', 'WhatsApp');
