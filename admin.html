@@ -49,6 +49,10 @@ input,select,textarea{padding:10px 12px;border:1px solid #CFC8BF;border-radius:6
 .warn{background:#FFF6E5;border:1px solid #F0D9A8;color:#7A5A12;border-radius:8px;padding:14px 16px;font-size:14px;margin-bottom:18px}
 .tl{font-size:13px;color:var(--mut)}
 .hide{display:none!important}
+.sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.sets label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--mut)}
+.sets input{font-size:15px;color:var(--dk)}
+.sets-act{grid-column:1/-1;display:flex;gap:14px;align-items:center}
 </style>
 </head>
 <body>
@@ -71,6 +75,7 @@ input,select,textarea{padding:10px 12px;border:1px solid #CFC8BF;border-radius:6
     <button type="button" data-tab="overview" class="on">المتابعة والمشاهدات</button>
     <button type="button" data-tab="clients">لينكات العملاء</button>
     <button type="button" data-tab="messages">رسائل التواصل</button>
+    <button type="button" data-tab="settings">إعدادات الموقع</button>
     <a href="index.html" target="_blank" style="color:#C9C3BA;padding:12px 14px;font-size:15px;text-decoration:none">فتح الموقع ↗</a>
     <div class="me"><span id="me"></span><br><button type="button" id="signout" style="all:unset;cursor:pointer;color:#C9A35B;margin-top:6px">تسجيل خروج</button></div>
   </aside>
@@ -103,14 +108,34 @@ input,select,textarea{padding:10px 12px;border:1px solid #CFC8BF;border-radius:6
       <div class="box hide" id="clientDetail"></div>
     </section>
 
+    <section data-sec="settings" class="hide">
+      <div class="box">
+        <div class="row"><h2>بيانات التواصل على الموقع</h2></div>
+        <p class="tl" style="margin:-6px 0 18px">أي تعديل هنا يظهر على الموقع بعد الحفظ مباشرة. اترك الخانة فارغة لإخفاء البند.</p>
+        <form id="setForm" class="sets">
+          <label>رقم التليفون (كما يظهر للزوار)<input name="phone" dir="ltr" maxlength="40" placeholder="+20 104 334 4175"></label>
+          <label>رقم الواتساب<input name="whatsapp" dir="ltr" maxlength="20" placeholder="01043344175"></label>
+          <label>البريد الإلكتروني<input name="email" type="email" dir="ltr" maxlength="100"></label>
+          <label>العنوان بالعربي<input name="addr_ar" maxlength="200"></label>
+          <label>العنوان بالإنجليزي<input name="addr_en" dir="ltr" maxlength="200"></label>
+          <label>لينك خرائط جوجل<input name="mapsLink" dir="ltr" maxlength="300" placeholder="https://maps.app.goo.gl/..."></label>
+          <label>مكان الخريطة على الصفحة (إحداثيات أو عنوان)<input name="mapsEmbedQuery" dir="ltr" maxlength="200" placeholder="29.969979,31.272235"></label>
+          <label>فيسبوك<input name="facebook" dir="ltr" maxlength="300" placeholder="https://www.facebook.com/..."></label>
+          <label>إنستجرام<input name="instagram" dir="ltr" maxlength="300" placeholder="https://www.instagram.com/..."></label>
+          <label>لينكدإن<input name="linkedin" dir="ltr" maxlength="300" placeholder="https://www.linkedin.com/company/..."></label>
+          <div class="sets-act"><button class="btn" type="submit">حفظ التعديلات</button><span class="tl" id="setMsg"></span></div>
+        </form>
+      </div>
+    </section>
+
     <section data-sec="messages" class="hide">
       <div class="box"><div class="row"><h2>رسائل التواصل</h2></div><div class="tw" id="msgsTbl"></div></div>
     </section>
   </main>
 </div>
 
-<script src="js/data.js?v=mwwa535g"></script>
-<script src="js/firebase-config.js?v=mwwa535g"></script>
-<script type="module" src="js/admin.js?v=mwwa535g"></script>
+<script src="js/data.js?v=mwwaa90u"></script>
+<script src="js/firebase-config.js?v=mwwaa90u"></script>
+<script type="module" src="js/admin.js?v=mwwaa90u"></script>
 </body>
 </html>

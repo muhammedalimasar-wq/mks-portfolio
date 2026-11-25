@@ -10,7 +10,9 @@ window.MKS = {
   site: {
     phone: '+20 104 334 4175',
     whatsapp: '201043344175',        // رقم الواتساب بالصيغة الدولية بدون + مثال: 2010XXXXXXXX — فاضي = أزرار الواتساب مخفية
-    email: '',
+    email: 'info@mksgroupco.com',
+    addr_ar: 'الدور الأول، مبنى 9، شارع 257، المعادي الجديدة، القاهرة',
+    addr_en: 'First Floor, Building 9, Street 257, New Maadi, Cairo, Egypt',
     mapsLink: 'https://maps.app.goo.gl/zZzvpLouM8SrEyyU7',
     mapsEmbedQuery: '29.969979,31.272235',
     facebook: 'https://www.facebook.com/mksgroupco.egy/',

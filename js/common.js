@@ -130,6 +130,10 @@
   const LS = { get: k => { try { return localStorage.getItem(k); } catch (_) { return null; } },
                set: (k, v) => { try { localStorage.setItem(k, v); } catch (_) {} } };
   window.MKS_LS = LS;
+  // contact data editable from the dashboard (see settings.js)
+  { const s = window.MKS.site, h = v => String(v).replace(/[&<>"']/g, c => '&#' + c.charCodeAt(0) + ';');
+    if (s.addr_ar) T.ar.addr = T.ar.loc_p = h(s.addr_ar);
+    if (s.addr_en) T.en.addr = T.en.loc_p = h(s.addr_en); }
   const qs = new URLSearchParams(location.search);
   let lang = qs.get('lang') || LS.get('mks_lang') || 'en';
   if (!T[lang]) lang = 'en';
@@ -233,7 +237,7 @@
     f.className = 'ftr';
     const links = [['fb', s.facebook], ['ig', s.instagram], ['li', s.linkedin]].filter(x => x[1])
       .map(([k, u]) => `<a href="${u}" target="_blank" rel="noopener" data-i="${k}"></a>`).join('');
-    f.innerHTML = `<div class="wrap"><div class="ftr-brand"><img src="img/brand/icon-white.png" alt="MKS"><span data-i="slogan"></span></div><div data-i="rights"></div><div style="display:flex;gap:20px;align-items:center"><a class="ftr-mail" href="mailto:info@mksgroupco.com" dir="ltr">info@mksgroupco.com</a>${links}</div><div class="ftr-reg" data-i="reg"></div></div>`;
+    f.innerHTML = `<div class="wrap"><div class="ftr-brand"><img src="img/brand/icon-white.png" alt="MKS"><span data-i="slogan"></span></div><div data-i="rights"></div><div style="display:flex;gap:20px;align-items:center">${s.email ? `<a class="ftr-mail" href="mailto:${s.email}" dir="ltr">${s.email}</a>` : ''}${links}</div><div class="ftr-reg" data-i="reg"></div></div>`;
     if (s.whatsapp) {
       const a = document.createElement('a');
       a.className = 'wa-float'; a.href = MKS.wa(); a.target = '_blank'; a.rel = 'noopener'; a.setAttribute('aria-label', 'WhatsApp');

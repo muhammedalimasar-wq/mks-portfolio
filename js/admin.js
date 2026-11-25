@@ -14,7 +14,7 @@ if (!cfg.apiKey) { $('#noconfig').classList.remove('hide'); throw new Error('no 
 
 const { initializeApp } = await import(SDK + 'firebase-app.js');
 const { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } = await import(SDK + 'firebase-auth.js');
-const { getFirestore, collection, query, where, orderBy, getDocs, doc, setDoc, deleteDoc, Timestamp, serverTimestamp } = await import(SDK + 'firebase-firestore.js');
+const { getFirestore, collection, query, where, orderBy, getDocs, getDoc, doc, setDoc, deleteDoc, Timestamp, serverTimestamp } = await import(SDK + 'firebase-firestore.js');
 const app = initializeApp(cfg), auth = getAuth(app), db = getFirestore(app);
 
 let days = 30, events = [], clients = [], messages = [];
@@ -35,7 +35,7 @@ onAuthStateChanged(auth, async u => {
 });
 
 // tabs
-const titles = { overview: 'المتابعة والمشاهدات', clients: 'لينكات العملاء', messages: 'رسائل التواصل' };
+const titles = { overview: 'المتابعة والمشاهدات', clients: 'لينكات العملاء', messages: 'رسائل التواصل', settings: 'إعدادات الموقع' };
 document.querySelectorAll('aside [data-tab]').forEach(b => b.onclick = () => {
   document.querySelectorAll('aside [data-tab]').forEach(x => x.classList.toggle('on', x === b));
   document.querySelectorAll('[data-sec]').forEach(s => s.classList.toggle('hide', s.dataset.sec !== b.dataset.tab));
@@ -57,6 +57,7 @@ async function loadAll() {
   clients = cl.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => (b.created?.seconds || 0) - (a.created?.seconds || 0));
   messages = ms.docs.map(d => ({ id: d.id, ...d.data(), t: d.data().ts?.toDate?.() }));
   renderOverview(); renderClients(); renderMessages();
+  if (!setLoaded) await loadSettings();
 }
 
 function renderOverview() {
@@ -154,3 +155,40 @@ function renderMessages() {
     ${messages.map(m => `<tr><td>${fmt(m.t)}</td><td>${esc(m.name)}</td><td class="lat" dir="ltr"><a href="https://wa.me/${esc((m.mobile || '').replace(/\D/g, '').replace(/^0/, '20'))}" target="_blank">${esc(m.mobile)}</a></td><td>${esc(m.svc)}</td><td style="white-space:normal;max-width:320px">${esc(m.msg)}</td><td class="lat">${esc(m.client || '—')}</td></tr>`).join('')}</tbody></table>`
     : '<div class="empty">لسه مفيش رسائل.</div>';
 }
+
+// ---- site settings (contact data shown on the public site) ----
+const SET_FIELDS = ['phone', 'whatsapp', 'email', 'addr_ar', 'addr_en', 'mapsLink', 'mapsEmbedQuery', 'facebook', 'instagram', 'linkedin'];
+const SET_URLS = ['mapsLink', 'facebook', 'instagram', 'linkedin'];
+let setLoaded = false;
+async function loadSettings() {
+  const f = $('#setForm'), base = window.MKS?.site || {};
+  let saved = {};
+  try { const d = await getDoc(doc(db, 'config', 'site')); if (d.exists()) saved = d.data(); } catch (_) {}
+  SET_FIELDS.forEach(k => {
+    let v = k in saved ? saved[k] : (base[k] ?? '');
+    if (k === 'whatsapp' && /^20\d{10}$/.test(v)) v = '0' + v.slice(2);   // show Egyptian numbers as 01...
+    f[k].value = v;
+  });
+  setLoaded = true;
+}
+$('#setForm').onsubmit = async e => {
+  e.preventDefault();
+  const f = e.target, out = {}, msg = $('#setMsg');
+  for (const k of SET_FIELDS) {
+    let v = f[k].value.trim();
+    if (/[<>"'`]/.test(v)) { msg.style.color = '#B3261E'; msg.textContent = 'الخانة فيها رموز غير مسموحة: ' + f[k].parentElement.firstChild.textContent; f[k].focus(); return; }
+    if (k === 'whatsapp' && v) {
+      v = v.replace(/\D/g, '');
+      if (/^0\d{10}$/.test(v)) v = '20' + v.slice(1);
+      if (!/^\d{8,15}$/.test(v)) { msg.style.color = '#B3261E'; msg.textContent = 'رقم الواتساب غير صحيح.'; f[k].focus(); return; }
+    }
+    if (SET_URLS.includes(k) && v && !/^https:\/\//.test(v)) { msg.style.color = '#B3261E'; msg.textContent = 'اللينك لازم يبدأ بـ https://'; f[k].focus(); return; }
+    if (k === 'email' && v && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { msg.style.color = '#B3261E'; msg.textContent = 'البريد الإلكتروني غير صحيح.'; f[k].focus(); return; }
+    out[k] = v;
+  }
+  msg.style.color = ''; msg.textContent = 'جارٍ الحفظ…';
+  try {
+    await setDoc(doc(db, 'config', 'site'), { ...out, updated: serverTimestamp() });
+    msg.style.color = '#1F5A33'; msg.textContent = 'تم الحفظ ✓ — التعديلات ظاهرة على الموقع الآن.';
+  } catch (err) { msg.style.color = '#B3261E'; msg.textContent = 'تعذر الحفظ: ' + (err.code || err.message); }
+};

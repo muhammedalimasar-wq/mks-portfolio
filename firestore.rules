@@ -40,6 +40,18 @@ service cloud.firestore {
                     && request.resource.data.ts == request.time;
     }
 
+    // public site settings: anyone can read, only the admin can edit
+    match /config/{id} {
+      allow read: if true;
+      allow write: if isAdmin() && id == 'site'
+                   && request.resource.data.keys().hasOnly(['phone','whatsapp','email','addr_ar','addr_en','mapsLink','mapsEmbedQuery','facebook','instagram','linkedin','updated'])
+                   && str(request.resource.data.get('phone', null), 300) && str(request.resource.data.get('whatsapp', null), 300)
+                   && str(request.resource.data.get('email', null), 300) && str(request.resource.data.get('addr_ar', null), 300)
+                   && str(request.resource.data.get('addr_en', null), 300) && str(request.resource.data.get('mapsLink', null), 300)
+                   && str(request.resource.data.get('mapsEmbedQuery', null), 300) && str(request.resource.data.get('facebook', null), 300)
+                   && str(request.resource.data.get('instagram', null), 300) && str(request.resource.data.get('linkedin', null), 300);
+    }
+
     match /clients/{id} {
       allow read, write: if isAdmin();
     }

@@ -97,6 +97,9 @@
 
   // contact
   const ph = document.getElementById('phoneLink'); ph.textContent = s.phone; ph.href = 'tel:' + s.phone.replace(/[^+\d]/g, '');
+  document.getElementById('phoneRow').hidden = !s.phone;
+  const em = document.getElementById('emailLink'); em.textContent = s.email; em.href = 'mailto:' + s.email;
+  document.getElementById('emailRow').hidden = !s.email;
   const form = document.getElementById('form'), msg = document.getElementById('formMsg');
   form.addEventListener('submit', async e => {
     e.preventDefault();
