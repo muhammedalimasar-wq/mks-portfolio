@@ -213,3 +213,12 @@ body{overflow-x:clip}
   .h2{font-size:34px}
   .sheets-sec{padding:24px 18px}
 }
+
+/* rounded corners (soft) */
+:root{--r:12px}
+.svc,.pcard,.feat,.stats-in,.contact,.loc,.side,.sheets-sec,.gal-main,.sheet .im{border-radius:var(--r);overflow:hidden}
+.gal-thumbs button,.v-thumbs button{border-radius:8px;overflow:hidden}
+.pcard .badge{border-radius:6px}
+.filters button,.btn,.lang,.burger{border-radius:8px}
+.form input,.form select,.form textarea{border-radius:8px}
+.stats{overflow:visible}
