@@ -131,6 +131,7 @@
 
   M.footer();
   M.applyI18n();
+  document.title = t('meta_title');
   M.reveal();
   M.parallax('.hero-bg', 120);
   M.parallax('.feat .para', 90);

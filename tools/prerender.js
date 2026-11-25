@@ -9,7 +9,9 @@ const start = src.indexOf('const T = ') + 'const T = '.length;
 const end = src.indexOf('\n  };\n', start) + 4;
 const T = eval('(' + src.slice(start, end) + ')');
 const en = T.en;
-for (const page of ['index.html', 'project.html']) {
+// cache-busting: every run stamps css/js links with a new version so browsers fetch fresh files
+const ver = Date.now().toString(36);
+for (const page of ['index.html', 'project.html', 'admin.html']) {
   const file = path.join(root, page);
   let html = fs.readFileSync(file, 'utf8');
   let n = 0;
@@ -18,6 +20,7 @@ for (const page of ['index.html', 'project.html']) {
     n++;
     return open + en[key] + close;
   });
+  html = html.replace(/((?:href|src)="(?:css|js)\/[\w.-]+\.(?:css|js))(?:\?v=\w+)?"/g, `$1?v=${ver}"`);
   fs.writeFileSync(file, html);
-  console.log(page, n, 'elements filled');
+  console.log(page, n, 'elements filled, version', ver);
 }
