@@ -80,8 +80,8 @@
                set: (k, v) => { try { localStorage.setItem(k, v); } catch (_) {} } };
   window.MKS_LS = LS;
   const qs = new URLSearchParams(location.search);
-  let lang = qs.get('lang') || LS.get('mks_lang') || 'ar';
-  if (!T[lang]) lang = 'ar';
+  let lang = qs.get('lang') || LS.get('mks_lang') || 'en';
+  if (!T[lang]) lang = 'en';
 
   // client tracking code (?c=CL-001) is remembered for the whole visit
   const c = qs.get('c');
