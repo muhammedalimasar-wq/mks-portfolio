@@ -9,7 +9,7 @@
 window.MKS = {
   site: {
     phone: '+202-2519-1521',
-    whatsapp: '',          // رقم الواتساب بالصيغة الدولية بدون + مثال: 2010XXXXXXXX — فاضي = أزرار الواتساب مخفية
+    whatsapp: '201043344175',        // رقم الواتساب بالصيغة الدولية بدون + مثال: 2010XXXXXXXX — فاضي = أزرار الواتساب مخفية
     email: '',
     mapsLink: 'https://maps.app.goo.gl/zZzvpLouM8SrEyyU7',
     mapsEmbedQuery: '29.969979,31.272235',
